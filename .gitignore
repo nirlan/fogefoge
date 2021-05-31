@@ -1,0 +1,6 @@
+**/logs
+*.log
+*.code-workspace
+*.out
+teste.*
+teste*.*
