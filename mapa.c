@@ -34,16 +34,18 @@ int ehvazia(MAPA* m, int x, int y) {
     return m->matriz[x][y] == VAZIO;
 }
 
-void encontramapa(MAPA* m, POSICAO* p, char c) {
+int encontramapa(MAPA* m, POSICAO* p, char c) {
     for(int i = 0; i < m->linhas; i++) {
         for(int j = 0; j < m->colunas; j++) {
             if(m->matriz[i][j] == c){
                 p->x = i;
                 p->y = j;
-                break;
+                return 1;
             }
         }
     }
+
+    return 0;
 }
 
 int podeandar(MAPA* m, int x, int y) {
