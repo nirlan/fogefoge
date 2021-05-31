@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "fogefoge.h"
 #include "mapa.h"
@@ -57,7 +58,8 @@ void fantasmas() {
 }
 
 int acabou() {
-    POSICAO pos;    
+    POSICAO pos;
+    memset(&pos, 0, sizeof(POSICAO));
     int fogefogenomapa = encontramapa(&m, &pos, HEROI);
     return !fogefogenomapa;
 }
@@ -93,7 +95,7 @@ void move(char direcao) {
     }
 
     if(!podeandar(&m, HEROI, proximox, proximoy))
-        return;   
+        return;
 
     andanomapa(&m, heroi.x, heroi.y, proximox, proximoy);
 
