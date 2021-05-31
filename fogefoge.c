@@ -10,50 +10,52 @@ int acabou() {
     return 0;
 }
 
+int ehdirecao(char direcao) {
+    return direcao == 'a' ||
+        direcao == 'w' ||
+        direcao == 's' ||
+        direcao == 'd';
+}
+
 void move(char direcao) {
 
-    if(direcao != 'a' &&
-        direcao != 'w' &&
-        direcao != 's' &&
-        direcao != 'd')
+    if(!ehdirecao(direcao))
         return;
-    
+
     int proximox = heroi.x;
     int proximoy = heroi.y;
-    
+
     switch(direcao) {
-        case 'a':
+        case ESQUERDA:
             proximoy--;
             break;
-        case 'w':
+        case CIMA:
             proximox--;
             break;
-        case 's':
+        case BAIXO:
             proximox++;
             break;
-        case 'd':
+        case DIREITA:
             proximoy++;
             break;
     }
 
-    if(proximox >= m.linhas)
+    if(!ehvalida(&m, proximox, proximoy))
         return;
-    if(proximoy >= m.colunas)
-        return;
-    if(m.matriz[proximox][proximoy] != '.')
+    if(!ehvazia(&m, proximox, proximoy))
         return;
 
-    m.matriz[proximox][proximoy] = '@';
-    m.matriz[heroi.x][heroi.y] = '.';
+    andanomapa(&m, heroi.x, heroi.y, proximox, proximoy);
+
     heroi.x = proximox;
     heroi.y = proximoy;
-        
+
 }
 
-int main() {  
-    
+int main() {
+
     lemapa(&m);
-    encontramapa(&m, &heroi, '@');
+    encontramapa(&m, &heroi, HEROI);
 
     do {
         imprimemapa(&m);
@@ -63,7 +65,7 @@ int main() {
         move(comando);
 
     } while(!acabou());
-    
-    liberamapa(&m);   
+
+    liberamapa(&m);
 
 }
