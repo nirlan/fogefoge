@@ -12,13 +12,13 @@ void copiamapa(MAPA* destino, MAPA* origem) {
     }
 }
 
-void andanomapa(MAPA* m, int xorigem, int yorigem, 
+void andanomapa(MAPA* m, int xorigem, int yorigem,
     int xdestino, int ydestino) {
-    
+
     char personagem = m->matriz[xorigem][yorigem];
 
     m->matriz[xdestino][ydestino] = personagem;
-    m->matriz[xorigem][yorigem] = VAZIO;    
+    m->matriz[xorigem][yorigem] = VAZIO;
 }
 
 int ehvalida(MAPA* m, int x, int y) {
@@ -94,10 +94,4 @@ void lemapa(MAPA* m) {
         fscanf(f, "%s", m->matriz[i]);
     }
     fclose(f);
-}
-
-void imprimemapa(MAPA* m) {
-    for(int i = 0; i < m->linhas; i++) {
-        printf("%s\n", m->matriz[i]);
-    }
 }
